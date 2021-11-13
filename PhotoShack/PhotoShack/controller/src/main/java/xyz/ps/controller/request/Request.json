@@ -1,0 +1,11 @@
+{
+  "user": {
+    "fname": "",
+    "lname": "",
+    "username": "",
+    "useraccess": {
+      "id": "",
+      "accesslist": []
+    }
+  }
+}
