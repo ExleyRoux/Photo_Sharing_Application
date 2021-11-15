@@ -1,15 +1,15 @@
-package xyz.ps.application.config;
+package xyz.ps.controller.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import xyz.ps.controller.config.ControllerConfig;
+import xyz.ps.service.config.ServiceConfig;
 
-@Import({ControllerConfig.class})
+@Import({ServiceConfig.class})
 @Configuration
 @ComponentScan(basePackages = {
-        "xyz.ps.application",
-        "xyz.ps.controller.api"
+        "xyz.ps.controller.api",
+        "xyz.ps.controller.request"
 })
-public class WebConfiguration {
+public class ControllerConfig {
 }

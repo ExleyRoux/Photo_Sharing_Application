@@ -1,6 +1,4 @@
-package xyz.ps.model.model;
-
-import net.bytebuddy.implementation.bytecode.assign.TypeCasting;
+package xyz.ps.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,27 +6,27 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
+public class UserModel implements Serializable {
     private Integer userId;
     private String firstName;
     private String lastName;
-    private String userName;
+    private String email;
     private String password;
 
-    public User(){};
+    public UserModel(){};
 
-    public User(Integer userId, String firstName, String lastName, String userName, String password) {
+    public UserModel(Integer userId, String firstName, String lastName, String email, String password) {
         this.userId = userId;
-        this.firstName = userName;
+        this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
+        this.email = email;
         this.password = password;
     }
 
-    public User(String firstName, String lastName, String userName){
+    public UserModel(String firstName, String lastName, String email){
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
+        this.email = email;
     }
 
     @Id
@@ -42,8 +40,11 @@ public class User implements Serializable {
     @Column(name = "LAST_NAME")
     public String getLastName(){return lastName;}
 
-    @Column(name = "USERNAME")
-    public String getUserName(){return userName;}
+    @Column(name = "EMAIL")
+    public String getEmail(){return email;}
+
+    @Column(name = "PASSWORD")
+    public String getPassword(){return password;}
 
     public void setUserId(Integer userId) {
         this.userId = userId;
@@ -57,8 +58,8 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPassword(String password) {
@@ -69,22 +70,22 @@ public class User implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(userId, user.userId) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(userName, user.userName) && Objects.equals(password, user.password);
+        UserModel userModel = (UserModel) o;
+        return Objects.equals(userId, userModel.userId) && Objects.equals(firstName, userModel.firstName) && Objects.equals(lastName, userModel.lastName) && Objects.equals(email, userModel.email) && Objects.equals(password, userModel.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, firstName, lastName, userName, password);
+        return Objects.hash(userId, firstName, lastName, email, password);
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserModel{" +
                 "userId=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

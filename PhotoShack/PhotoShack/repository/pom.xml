@@ -16,7 +16,7 @@
     <dependencies>
         <dependency>
             <groupId>xyz.ps</groupId>
-            <artifactId>dto</artifactId>
+            <artifactId>model</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

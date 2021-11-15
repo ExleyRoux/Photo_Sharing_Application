@@ -31,7 +31,6 @@
 
 	<modules>
 		<module>controller</module>
-		<module>dto</module>
 		<module>model</module>
 		<module>repository</module>
 		<module>service</module>
@@ -56,6 +55,11 @@
 				</exclusions>
 			</dependency>
 			<dependency>
+				<groupId>io.swagger</groupId>
+				<artifactId>swagger-annotations</artifactId>
+				<version>${swagger.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>io.springfox</groupId>
 				<artifactId>springfox-swagger-ui</artifactId>
 				<version>${springfox-swagger.version}</version>
@@ -77,12 +81,6 @@
 				<version>${mysql-connector-version}</version>
 			</dependency>
 
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-autoconfigure</artifactId>
-				<version>${spring-autoconfigure}</version>
-			</dependency>
-
 <!--			<dependency>-->
 <!--				<groupId>org.springframework.boot</groupId>-->
 <!--				<artifactId>spring-boot-starter-security</artifactId>-->
@@ -91,7 +89,8 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<dependencies></dependencies>
+	<dependencies>
+	</dependencies>
 
 	<build>
 		<plugins>
