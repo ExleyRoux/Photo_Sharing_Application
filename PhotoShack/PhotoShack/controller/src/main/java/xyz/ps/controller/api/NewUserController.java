@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import xyz.ps.model.dto.NewUserDTO;
 import xyz.ps.model.dto.UserDTO;
 import xyz.ps.service.GeneralResponse;
 import xyz.ps.service.NewUserService;
@@ -25,21 +26,12 @@ public class NewUserController {
     private NewUserService userService;
 
     @PostMapping(name = "CreateNewUser", value = "/")
-    @ApiOperation(value = "Create New User", notes = "Creates a new user")
-    @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Creation of member was successful", response = GeneralResponse.class),
-            @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
-            @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class)
-    })
-    public ResponseEntity<GeneralResponse<UserDTO>> create(
-            @ApiParam(
-                    value = "Request body to create new account type.",
-                    required = true
-            )
-            @RequestBody UserDTO user){
-        GeneralResponse<UserDTO> response = new GeneralResponse<UserDTO>(true, user);
+    public ResponseEntity<GeneralResponse<NewUserDTO>> create(@RequestBody NewUserDTO user){
+
+        GeneralResponse<NewUserDTO> response = new GeneralResponse<NewUserDTO>(true, user);
+
         try {
-            new NewUserService().createNewUser(user);
+            userService.createNewUser(user);
         }
         catch (Exception e){
             response.setSuccessful(false);

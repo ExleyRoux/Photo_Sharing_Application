@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.ps.model.dto.UserDTO;
 import xyz.ps.service.GeneralResponse;
@@ -22,7 +23,8 @@ public class UserDetailsController {
     @Autowired
     private GetAllUserService userService;
 
-    @GetMapping("/")
+    @GetMapping("/all")
+    @ResponseBody
     public ResponseEntity<List<UserDTO>> getAll(){
         List<UserDTO> response = new ArrayList<>();
         try{

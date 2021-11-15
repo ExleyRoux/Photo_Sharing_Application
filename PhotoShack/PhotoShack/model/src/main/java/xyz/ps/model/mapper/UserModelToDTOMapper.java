@@ -11,8 +11,6 @@ public class UserModelToDTOMapper {
         i.setEmail(user.getEmail());
         i.setFirstName(user.getFirstName());
         i.setLastName(user.getLastName());
-        i.setPassword(user.getPassword());
-
         return i;
     }
 }
