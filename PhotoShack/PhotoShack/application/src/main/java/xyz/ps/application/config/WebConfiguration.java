@@ -9,7 +9,7 @@ import xyz.ps.controller.config.ControllerConfig;
 @Configuration
 @ComponentScan(basePackages = {
         "xyz.ps.application",
-        "xyz.ps.controller.api"
+        "xyz.ps.controller"
 })
 public class WebConfiguration {
 }

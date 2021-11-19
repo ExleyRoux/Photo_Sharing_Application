@@ -1,6 +1,7 @@
 package xyz.ps.repository;
 
 import org.springframework.data.jpa.repository.Query;
+import xyz.ps.model.UserModel;
 
 public interface UserRepositoryQuery {
 
@@ -13,7 +14,8 @@ public interface UserRepositoryQuery {
                     "WHERE " +
                     "us.firstName = :firstname AND " +
                     "us.lastName = :lastname AND "+
-                    "us.email = :email "
+                    "us.email = :email AND "+
+                    "us.password = :password"
     )
-    Boolean userExists(String firstname, String lastname, String email);
+    Integer userExists(String firstname, String lastname, String email, String password);
 }

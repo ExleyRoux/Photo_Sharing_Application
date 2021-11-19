@@ -2,7 +2,7 @@ package xyz.ps.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.List;
 
 @Entity
 @Table(name = "USERS")
@@ -13,10 +13,12 @@ public class UserModel implements Serializable {
     private String email;
     private String password;
 
-    public UserModel(){};
+    private List<AlbumModel> userAlbumsList;
+    private List<PhotoModel> userPhotoSharedList;
+    private List<AlbumModel> userSharedAlbumsList;
 
-    public UserModel(Integer userId, String firstName, String lastName, String email, String password) {
-        this.userId = userId;
+    public UserModel(){};
+    public UserModel(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -33,60 +35,41 @@ public class UserModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID_USER")
     public Integer getUserId(){return userId;}
+    public void setUserId(Integer userId) {this.userId = userId;}
 
     @Column(name = "FIRST_NAME")
     public String getFirstName(){return firstName;}
-
-    @Column(name = "LAST_NAME")
-    public String getLastName(){return lastName;}
-
-    @Column(name = "EMAIL")
-    public String getEmail(){return email;}
-
-    @Column(name = "PASSWORD")
-    public String getPassword(){return password;}
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    @Column(name = "LAST_NAME")
+    public String getLastName(){return lastName;}
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    @Column(name = "EMAIL")
+    public String getEmail(){return email;}
     public void setEmail(String email) {
         this.email = email;
     }
 
+    @Column(name = "PASSWORD")
+    public String getPassword(){return password;}
     public void setPassword(String password) {
         this.password = password;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserModel userModel = (UserModel) o;
-        return Objects.equals(userId, userModel.userId) && Objects.equals(firstName, userModel.firstName) && Objects.equals(lastName, userModel.lastName) && Objects.equals(email, userModel.email) && Objects.equals(password, userModel.password);
-    }
+    @OneToMany(targetEntity = PhotoModel.class, fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    public List<PhotoModel> getUserPhotoSharedList(){return userPhotoSharedList;}
+    public void setUserPhotoSharedList(List<PhotoModel> photos){this.userPhotoSharedList = photos;}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(userId, firstName, lastName, email, password);
-    }
+    @OneToMany(targetEntity = AlbumModel.class, fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    public List<AlbumModel> getUserAlbumList(){return userAlbumsList;}
+    public void setUserAlbumsList(List<AlbumModel> photos){this.userAlbumsList = photos;}
 
-    @Override
-    public String toString() {
-        return "UserModel{" +
-                "userId=" + userId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
+    @OneToMany(targetEntity = AlbumModel.class, fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    public List<AlbumModel> getUserSharedAlbumList(){return userSharedAlbumsList;}
+    public void setUserSharedAlbumsList(List<AlbumModel> albums){this.userSharedAlbumsList = albums;}
 }
