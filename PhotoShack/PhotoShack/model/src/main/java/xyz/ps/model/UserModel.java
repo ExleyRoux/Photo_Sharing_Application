@@ -67,9 +67,9 @@ public class UserModel implements Serializable {
 
     @OneToMany(targetEntity = AlbumModel.class, fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.PERSIST)
     public List<AlbumModel> getUserAlbumList(){return userAlbumsList;}
-    public void setUserAlbumsList(List<AlbumModel> photos){this.userAlbumsList = photos;}
+    public void setUserAlbumList(List<AlbumModel> photos){this.userAlbumsList = photos;}
 
     @OneToMany(targetEntity = AlbumModel.class, fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.PERSIST)
     public List<AlbumModel> getUserSharedAlbumList(){return userSharedAlbumsList;}
-    public void setUserSharedAlbumsList(List<AlbumModel> albums){this.userSharedAlbumsList = albums;}
+    public void setUserSharedAlbumList(List<AlbumModel> albums){this.userSharedAlbumsList = albums;}
 }

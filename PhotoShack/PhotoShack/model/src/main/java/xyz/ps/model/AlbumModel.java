@@ -7,15 +7,15 @@ import java.util.List;
 @Table(name = "ALBUMS")
 public class AlbumModel {
     private Integer albumID;
-    private String albumName;
+    private String title;
 
-    private List<PhotoModel> photoList;
+    private List<PhotoModel> photoModelList;
     private UserModel user;
 
     public AlbumModel() {}
-    public AlbumModel(Integer albumID, String albumName, UserModel user) {
+    public AlbumModel(Integer albumID, String title, UserModel user) {
         this.albumID = albumID;
-        this.albumName = albumName;
+        this.title = title;
         this.user = user;
     }
 
@@ -23,15 +23,15 @@ public class AlbumModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID_ALBUM")
     public Integer getAlbumID(){return albumID;}
-    public void setPhotoID(Integer id){this.albumID = id;}
+    public void setAlbumID(Integer id){this.albumID = id;}
 
     @Column(name = "ALBUM_NAME")
-    public String getAlbumName(){return albumName;}
-    public void setAlbumName(String name){this.albumName = name;}
+    public String getTitle(){return title;}
+    public void setTitle(String name){this.title = name;}
 
     @OneToMany(targetEntity = PhotoModel.class, fetch = FetchType.LAZY, mappedBy = "album", orphanRemoval = true, cascade = CascadeType.PERSIST)
-    public List<PhotoModel> getPhotoList(){return photoList;}
-    public void setPhotoList(List<PhotoModel> photos){this.photoList = photos;}
+    public List<PhotoModel> getPhotoModelList(){return photoModelList;}
+    public void setPhotoModelList(List<PhotoModel> photos){this.photoModelList = photos;}
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_USER")

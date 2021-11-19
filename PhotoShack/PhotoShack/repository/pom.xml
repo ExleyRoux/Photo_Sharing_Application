@@ -14,11 +14,11 @@
     <packaging>jar</packaging>
 
     <dependencies>
-        <dependency>
-            <groupId>xyz.ps</groupId>
-            <artifactId>model</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>xyz.ps</groupId>-->
+<!--            <artifactId>model</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-java8</artifactId>

@@ -23,5 +23,4 @@ public class UserDTOToModelMapper {
         i.setPassword(userDTO.getPassword());
         return i;
     }
-
 }

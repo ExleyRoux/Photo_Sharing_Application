@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("login")
 @ComponentScan("xyz.ps.service")
-public class GetUserLogin {
+public class GetUserLoginController {
 }

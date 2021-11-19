@@ -1,4 +1,4 @@
-package xyz.ps.repository;
+package xyz.ps.repository.impl;
 
 import org.springframework.data.jpa.repository.Query;
 import xyz.ps.model.UserModel;
@@ -18,4 +18,15 @@ public interface UserRepositoryQuery {
                     "us.password = :password"
     )
     Integer userExists(String firstname, String lastname, String email, String password);
+
+    @Query(
+            value =
+                    "SELECT " +
+                    "* " +
+                    "FROM "+
+                    "UserModel us "+
+                    "WHERE " +
+                    "us.email = :email"
+    )
+    UserModel getUser(String email);
 }
