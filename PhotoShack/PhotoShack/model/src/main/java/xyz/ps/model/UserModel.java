@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "users")
+@Table(name = "USERS")
 public class UserModel implements Serializable {
     private Integer userId;
     private String firstName;

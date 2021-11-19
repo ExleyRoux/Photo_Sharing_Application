@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import xyz.ps.model.UserModel;
 import xyz.ps.model.dto.UserDTO;
 import xyz.ps.model.mapper.UserModelToDTOMapper;
-import xyz.ps.repository.persistence.UserRepository;
+import xyz.ps.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;

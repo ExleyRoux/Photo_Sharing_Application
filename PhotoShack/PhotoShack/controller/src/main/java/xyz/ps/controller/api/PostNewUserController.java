@@ -1,35 +1,27 @@
 package xyz.ps.controller.api;
 
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import xyz.ps.model.dto.NewUserDTO;
-import xyz.ps.model.dto.UserDTO;
 import xyz.ps.service.GeneralResponse;
-import xyz.ps.service.NewUserService;
+import xyz.ps.service.CreateNewUserService;
 
 @RestController
-@RequestMapping("new-user")
+@RequestMapping("user")
 @ComponentScan("xyz.ps.service")
-public class NewUserController {
+public class PostNewUserController {
 
     @Autowired
-    private NewUserService userService;
+    private CreateNewUserService userService;
 
-    @PostMapping(name = "CreateNewUser", value = "/")
+    @PostMapping(name = "CreateNewUser", value = "/Register")
+    @ResponseStatus(code = HttpStatus.CREATED)
     public ResponseEntity<GeneralResponse<NewUserDTO>> create(@RequestBody NewUserDTO user){
 
         GeneralResponse<NewUserDTO> response = new GeneralResponse<NewUserDTO>(true, user);
-
         try {
             userService.createNewUser(user);
         }

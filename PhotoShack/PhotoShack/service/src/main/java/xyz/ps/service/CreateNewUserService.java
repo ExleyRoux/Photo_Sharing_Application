@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.ps.model.dto.NewUserDTO;
 import xyz.ps.model.mapper.UserDTOToModelMapper;
-import xyz.ps.repository.persistence.UserRepository;
+import xyz.ps.repository.UserRepository;
 
 //This is a service to create a new User used by controller
 @Service
-public class NewUserService {
+public class CreateNewUserService {
 
     @Autowired
     private UserRepository userRepository;
