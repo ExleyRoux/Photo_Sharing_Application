@@ -3,7 +3,7 @@ package xyz.ps.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.ps.model.dto.*;
-import xyz.ps.model.exception.EmailNotFoundException;
+import xyz.ps.service.exception.EmailNotFoundException;
 import xyz.ps.model.mapper.*;
 import xyz.ps.repository.PhotoRepository;
 import xyz.ps.repository.UserRepository;

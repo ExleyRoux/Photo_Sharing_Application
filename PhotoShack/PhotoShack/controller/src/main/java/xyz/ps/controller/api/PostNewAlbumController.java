@@ -21,7 +21,7 @@ public class PostNewAlbumController {
 
     @PostMapping(name = "New Album", value = "/new")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public ResponseEntity<GeneralResponse<NewAlbumDTO>> create(
+    public ResponseEntity<GeneralResponse> create(
             @RequestBody NewAlbumDTO album){
         GeneralResponse<NewAlbumDTO> response = new GeneralResponse<NewAlbumDTO>(true, album);
         try {

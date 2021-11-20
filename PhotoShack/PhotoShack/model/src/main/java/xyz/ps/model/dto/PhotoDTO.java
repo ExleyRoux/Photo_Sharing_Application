@@ -18,7 +18,10 @@ public class PhotoDTO {
     @JsonIgnore
     private Integer Id;
     private String photoName;
+    @JsonIgnore
     private UserDTO userDTO;
+    @JsonIgnore
     private List<UserDTO> sharedUsersDTO;
+    @JsonIgnore
     private AlbumDTO albumDTO;
 }

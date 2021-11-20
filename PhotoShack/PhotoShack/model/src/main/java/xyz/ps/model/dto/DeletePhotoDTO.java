@@ -7,15 +7,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-@ApiModel(value = "Photo", description = "A DTO representing new Photo object")
+@ApiModel(value = "DeletePhotoDTO", description = "A DTO received by controller to delete specific photo")
 @Setter
 @Getter
 @Accessors(chain = true)
-public class NewPhotoDTO{
+public class DeletePhotoDTO {
+
     @ApiModelProperty(
             position = 1,
-            value = "Photo Name Text",
-            name = "PhotoTitle",
+            value = "Photo Title Text",
+            name = "Photo Title",
             dataType = "java.lang.String",
             example = "img.jpg",
             required = true
@@ -24,20 +25,10 @@ public class NewPhotoDTO{
 
     @ApiModelProperty(
             position = 2,
-            value = "User Email Text",
-            name = "Email",
+            value = "Album Title Text",
+            name = "Album Title",
             dataType = "java.lang.String",
-            example = "batteryAcid@gmail.com",
-            required = true
-    )
-    private String userEmail;
-
-    @ApiModelProperty(
-            position = 3,
-            value = "User Album",
-            name = "AlbumName",
-            dataType = "java.lang.String",
-            example = "In the Dark",
+            example = "root",
             required = false
     )
     private String albumName;
@@ -48,7 +39,17 @@ public class NewPhotoDTO{
         return this.albumName;
     }
 
-    public NewPhotoDTO(){
+    @ApiModelProperty(
+            position = 3,
+            value = "User Email Text",
+            name = "User Email",
+            dataType = "java.lang.String",
+            example = "email@email.com",
+            required = true
+    )
+    private String userEmail;
+
+    public DeletePhotoDTO(){
         this.albumName = "root";
     }
 }

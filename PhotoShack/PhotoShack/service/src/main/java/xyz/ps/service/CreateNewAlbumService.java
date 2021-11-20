@@ -3,16 +3,10 @@ package xyz.ps.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.ps.model.dto.NewAlbumDTO;
-import xyz.ps.model.dto.NewUserDTO;
-import xyz.ps.model.exception.EmailNotFoundException;
-import xyz.ps.model.mapper.AlbumDTOToModelMapper;
-import xyz.ps.model.mapper.UserDTOToModelMapper;
+import xyz.ps.service.exception.EmailNotFoundException;
 import xyz.ps.repository.AlbumRepository;
-import xyz.ps.repository.UserRepository;
 import xyz.ps.repository.model.AlbumModel;
 import xyz.ps.repository.model.UserModel;
-
-import javax.jws.soap.SOAPBinding;
 
 @Service
 public class CreateNewAlbumService {
