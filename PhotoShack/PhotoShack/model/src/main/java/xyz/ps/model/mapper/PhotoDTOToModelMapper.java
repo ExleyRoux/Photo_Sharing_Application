@@ -1,37 +1,37 @@
 package xyz.ps.model.mapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import xyz.ps.model.AlbumModel;
-import xyz.ps.model.PhotoModel;
-import xyz.ps.model.UserModel;
+import xyz.ps.model.exception.EmailNotFoundException;
+import xyz.ps.repository.AlbumRepository;
+import xyz.ps.repository.UserRepository;
+import xyz.ps.repository.model.AlbumModel;
+import xyz.ps.repository.model.PhotoModel;
 import xyz.ps.model.dto.NewPhotoDTO;
 import xyz.ps.model.dto.PhotoDTO;
-import xyz.ps.service.GetAlbumService;
-import xyz.ps.service.GetUserExistsService;
-import xyz.ps.service.GetUserService;
 
 public class PhotoDTOToModelMapper {
 
     @Autowired
-    public GetAlbumService albumService;
-    public GetUserService getUserService;
+    public AlbumRepository albumRepository;
+    @Autowired
+    public UserRepository userRepository;
 
     public PhotoModel mapToModel(PhotoDTO dto){
         PhotoModel mod = new PhotoModel();
         mod.setPhotoName(dto.getPhotoName());
-        mod.setAlbum(new AlbumDTOToModelMapper().mapToModel(dto.getAlbumDTO()));
+//        mod.setAlbum(new AlbumDTOToModelMapper().mapToModel(dto.getAlbumDTO()));
         mod.setUser(new UserDTOToModelMapper().mapToModel(dto.getUserDTO()));
         return mod;
     }
 
     public PhotoModel mapToModel(NewPhotoDTO dto){
         PhotoModel mod = new PhotoModel();
-        AlbumModel i = albumService.getAlbum(getUserService.getUser(dto.getUserEmail()), dto.getAlbumName());
-
+//        AlbumModel i = albumRepository.getAlbum(userRepository.getUser(dto.getUserEmail()), dto.getAlbumName());
         mod.setPhotoName(dto.getPhotoName());
-        mod.setUser(i.getUser());
-        mod.setAlbum(i);
+//        mod.setUser(userRepository.findByEmailLikeIgnoreCase(dto.getUserEmail()));
+        if (mod.getUser() == null)
+            throw new EmailNotFoundException();
+//        mod.setAlbum(i);
         return mod;
     }
 }

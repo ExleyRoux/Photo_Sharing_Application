@@ -1,5 +1,6 @@
 package xyz.ps.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -15,25 +16,11 @@ import java.util.List;
 @NoArgsConstructor
 @Accessors(chain = true)
 public class AlbumDTO {
-    @ApiModelProperty(
-            position = 1,
-            value = "Album Title Text",
-            name = "AlbumTitle",
-            dataType = "java.lang.String",
-            example = "Mesmerize",
-            required = true
-    )
+
+    @JsonIgnore
+    private Integer id;
     private String title;
-
-    @ApiModelProperty(
-            required = true,
-            position = 2
-    )
     private UserDTO userDTO;
-
-    @ApiModelProperty(
-            position = 3,
-            required = false
-    )
     private List<PhotoDTO> photoDTOS;
+    private List<UserDTO> sharedUserDTOS;
 }

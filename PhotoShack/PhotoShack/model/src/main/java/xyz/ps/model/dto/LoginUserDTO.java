@@ -1,5 +1,6 @@
 package xyz.ps.model.dto;
 
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -7,27 +8,30 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-@ApiModel(value = "Album", description = "A DTO representing a new Album object")
+@ApiModel(value = "Login", description = "A DTO Representing UserLogin")
 @Setter
 @Getter
 @NoArgsConstructor
 @Accessors(chain = true)
-public class NewAlbumDTO {
+public class LoginUserDTO {
 
     @ApiModelProperty(
             position = 1,
-            value = "Album Title Text",
-            name = "AlbumTitle",
+            value = "User Email",
+            name = "LastName",
             dataType = "java.lang.String",
-            example = "Mesmerize",
-            required = false
+            example = "Tankian@gmail.com",
+            required = true
     )
-    private String title;
+    private String email;
 
     @ApiModelProperty(
             position = 2,
-            example = "email@email.com",
+            value = "User Password",
+            name = "UserPassword",
+            dataType = "java.lang.String",
+            example = "password",
             required = true
     )
-    private String userEmail;
+    private String password;
 }

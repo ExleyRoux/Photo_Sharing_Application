@@ -7,6 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xyz.ps.model.dto.NewPhotoDTO;
 import xyz.ps.model.dto.NewUserDTO;
+import xyz.ps.model.dto.PhotoDTO;
+import xyz.ps.model.mapper.PhotoModelToDTOMapper;
+import xyz.ps.repository.model.PhotoModel;
 import xyz.ps.service.CreateNewPhotoService;
 import xyz.ps.service.GeneralResponse;
 
@@ -18,18 +21,16 @@ public class PostNewPhotoController {
     @Autowired
     private CreateNewPhotoService photoService;
 
-    @PostMapping(name = "Upload Photo", value = "")
+
+    @PostMapping(name = "Upload Photo", value = "/upload")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public ResponseEntity<GeneralResponse<NewPhotoDTO>> create(
-            @RequestBody NewPhotoDTO photo){
-        GeneralResponse<NewPhotoDTO> response = new GeneralResponse<NewPhotoDTO>(true, photo);
+    public ResponseEntity<GeneralResponse> create(@RequestBody NewPhotoDTO photo){
         try {
-            photoService.createNewPhoto(photo);
+            PhotoDTO photoDTO = photoService.createNewPhoto(photo);
+            return new ResponseEntity<>(new GeneralResponse(true, photoDTO), HttpStatus.CREATED);
         }
         catch (Exception e){
-            response.setSuccessful(false);
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new GeneralResponse(false, photo), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 }

@@ -1,29 +1,41 @@
 package xyz.ps.model.mapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import xyz.ps.model.AlbumModel;
+import xyz.ps.repository.AlbumRepository;
+import xyz.ps.repository.UserRepository;
+import xyz.ps.repository.model.AlbumModel;
 import xyz.ps.model.dto.AlbumDTO;
 import xyz.ps.model.dto.NewAlbumDTO;
-import xyz.ps.repository.UserRepository;
-import xyz.ps.service.GetUserService;
+import xyz.ps.repository.model.PhotoModel;
+import xyz.ps.repository.model.UserModel;
+
+import java.util.List;
 
 public class AlbumDTOToModelMapper {
 
     @Autowired
-    public UserRepository userRepository;
+    private UserRepository userRepository;
 
     public AlbumModel mapToModel(AlbumDTO dto){
         AlbumModel i = new AlbumModel();
-        i.setPhotoModelList(new PhotoDTOListToModelListMapper().mapToModel(dto.getPhotoDTOS()));
+//        i.setPhotoModelList(new PhotoDTOListToModelListMapper().mapToModel(dto.getPhotoDTOS()));
         i.setUser(new UserDTOToModelMapper().mapToModel(dto.getUserDTO()));
         i.setTitle(dto.getTitle());
         return i;
     }
 
     public AlbumModel mapToModel(NewAlbumDTO dto){
-        AlbumModel i = new AlbumModel();
-        i.setTitle(dto.getTitle());
-        i.setUser(userRepository.);
-        return i;
+        AlbumModel j = new AlbumModel();
+        UserModel i = userRepository.findByEmailLikeIgnoreCase(dto.getUserEmail());
+
+        if (i == null){
+            throw new RuntimeException("User does not exist");
+        }
+        else {
+            j.setUser(i);
+            j.setTitle(dto.getTitle());
+//            j.setPhotoModelList(null);
+            return j;
+        }
     }
 }

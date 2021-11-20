@@ -2,7 +2,7 @@ package xyz.ps.model.mapper;
 
 import xyz.ps.model.dto.NewUserDTO;
 import xyz.ps.model.dto.UserDTO;
-import xyz.ps.model.UserModel;
+import xyz.ps.repository.model.UserModel;
 
 //This class maps the User DTOs to the Model
 public class UserDTOToModelMapper {
@@ -12,6 +12,7 @@ public class UserDTOToModelMapper {
         i.setFirstName(userDTO.getFirstName());
         i.setLastName(userDTO.getLastName());
         i.setEmail(userDTO.getEmail());
+        i.setUserId(userDTO.getId());
         return i;
     }
 

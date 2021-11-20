@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories("xyz.ps.repository")
-@EntityScan("xyz.ps.model")
+@EntityScan("xyz.ps.repository")
 @PropertySource(value = "classpath:application-db.properties")
 public class RepositoryConfig {
 }

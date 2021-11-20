@@ -1,11 +1,13 @@
-package xyz.ps.model;
+package xyz.ps.repository.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "USERS", uniqueConstraints = {
+        @UniqueConstraint(name = "uc_usermodel_email", columnNames = {"EMAIL"})
+})
 public class UserModel implements Serializable {
     private Integer userId;
     private String firstName;

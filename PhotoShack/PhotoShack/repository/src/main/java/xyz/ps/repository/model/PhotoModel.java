@@ -1,10 +1,12 @@
-package xyz.ps.model;
+package xyz.ps.repository.model;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "PHOTO_DATA")
+@Table(name = "PHOTO_DATA", uniqueConstraints = {
+        @UniqueConstraint(name = "uc_photomodel_photo_name", columnNames = {"PHOTO_NAME", "ID_ALBUM"})
+})
 public class PhotoModel {
     private Integer photoID;
     private String photoName;

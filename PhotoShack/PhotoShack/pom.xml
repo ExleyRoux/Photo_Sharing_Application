@@ -35,7 +35,6 @@
 		<module>repository</module>
 		<module>service</module>
 		<module>application</module>
-		<module>security</module>
 	</modules>
 
 	<dependencyManagement>

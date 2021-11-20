@@ -1,5 +1,6 @@
 package xyz.ps.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @Accessors(chain = true)
 public class PhotoDTO {
+    @JsonIgnore
+    private Integer Id;
     private String photoName;
     private UserDTO userDTO;
     private List<UserDTO> sharedUsersDTO;
