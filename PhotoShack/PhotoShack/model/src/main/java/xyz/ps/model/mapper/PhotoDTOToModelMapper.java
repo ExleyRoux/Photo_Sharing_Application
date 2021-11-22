@@ -26,7 +26,7 @@ public class PhotoDTOToModelMapper {
     public PhotoModel mapToModel(NewPhotoDTO dto){
         PhotoModel mod = new PhotoModel();
 //        AlbumModel i = albumRepository.getAlbum(userRepository.getUser(dto.getUserEmail()), dto.getAlbumName());
-        mod.setPhotoName(dto.getPhotoName());
+        mod.setPhotoName(dto.getPhoto().getOriginalFilename());
 //        mod.setUser(userRepository.findByEmailLikeIgnoreCase(dto.getUserEmail()));
         if (mod.getUser() == null)
             throw new ResourceNotFoundException();

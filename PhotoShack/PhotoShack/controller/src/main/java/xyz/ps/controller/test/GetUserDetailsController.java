@@ -62,7 +62,7 @@ public class GetUserDetailsController {
     public ResponseEntity<GeneralResponse<UserDTO>> getUserById(@ApiParam(required = true) @RequestParam Integer user){
         GeneralResponse response = new GeneralResponse(false, user);
         try{
-            UserDTO i = getUserService.getUserById(user);
+            UserDTO i = new UserModelToDTOMapper().mapToModel(getUserService.getUserById(user));
             response.setPayload(i);
             response.setSuccessful(true);
             return new ResponseEntity<GeneralResponse<UserDTO>>(response, HttpStatus.FOUND);

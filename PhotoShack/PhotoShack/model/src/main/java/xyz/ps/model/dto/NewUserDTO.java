@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-@ApiModel(value = "User", description = "A DTO representing User object")
+@ApiModel(value = "NewUser", description = "A DTO representing User object")
 @Setter
 @Getter
 @NoArgsConstructor

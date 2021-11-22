@@ -1,29 +1,33 @@
 package xyz.ps.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.springframework.web.multipart.MultipartFile;
 
-@ApiModel(value = "Photo", description = "A DTO representing new Photo object")
+import java.io.File;
+
+@ApiModel(value = "NewPhotoDTO", description = "A DTO representing new Photo object")
 @Setter
 @Getter
 @Accessors(chain = true)
 public class NewPhotoDTO{
-    @ApiModelProperty(
-            position = 1,
-            value = "Photo Name Text",
-            name = "PhotoTitle",
-            dataType = "java.lang.String",
-            example = "img.jpg",
-            required = true
-    )
-    private String photoName;
+//    @ApiModelProperty(
+//            position = 1,
+//            value = "Photo Name Text",
+//            name = "PhotoTitle",
+//            dataType = "java.lang.String",
+//            example = "img.jpg",
+//            required = true
+//    )
+//    private String photoName;
 
     @ApiModelProperty(
-            position = 2,
+            position = 1,
             value = "User Email Text",
             name = "Email",
             dataType = "java.lang.String",
@@ -33,7 +37,7 @@ public class NewPhotoDTO{
     private String userEmail;
 
     @ApiModelProperty(
-            position = 3,
+            position = 2,
             value = "User Album",
             name = "AlbumName",
             dataType = "java.lang.String",
@@ -48,7 +52,25 @@ public class NewPhotoDTO{
         return this.albumName;
     }
 
+//    @ApiModelProperty(
+//            position = 4,
+//            value = "Photo",
+//            name = "Photo",
+//            dataType = "java.io.File",
+//            required = true
+//    )
+    @JsonIgnore
+    private MultipartFile photo;
+
     public NewPhotoDTO(){
         this.albumName = "root";
+    }
+
+    @Override
+    public String toString() {
+        return "NewPhotoDTO{" +
+                "userEmail='" + userEmail + '\'' +
+                ", albumName='" + albumName + '\'' +
+                '}';
     }
 }

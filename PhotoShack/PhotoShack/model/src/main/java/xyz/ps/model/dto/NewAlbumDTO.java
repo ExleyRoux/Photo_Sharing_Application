@@ -20,14 +20,14 @@ public class NewAlbumDTO {
             name = "AlbumTitle",
             dataType = "java.lang.String",
             example = "Mesmerize",
-            required = false
+            required = true
     )
     private String title;
 
     @ApiModelProperty(
             position = 2,
-            example = "email@email.com",
+            example = "123",
             required = true
     )
-    private String userEmail;
+    private Integer userId;
 }

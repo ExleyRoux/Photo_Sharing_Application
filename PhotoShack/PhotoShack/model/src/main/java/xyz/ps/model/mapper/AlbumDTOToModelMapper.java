@@ -24,18 +24,18 @@ public class AlbumDTOToModelMapper {
         return i;
     }
 
-    public AlbumModel mapToModel(NewAlbumDTO dto){
-        AlbumModel j = new AlbumModel();
-        UserModel i = userRepository.findByEmailLikeIgnoreCase(dto.getUserEmail());
-
-        if (i == null){
-            throw new RuntimeException("User does not exist");
-        }
-        else {
-            j.setUser(i);
-            j.setTitle(dto.getTitle());
-//            j.setPhotoModelList(null);
-            return j;
-        }
-    }
+//    public AlbumModel mapToModel(NewAlbumDTO dto){
+//        AlbumModel j = new AlbumModel();
+//        UserModel i = userRepository.findByEmailLikeIgnoreCase(dto.getUserId());
+//
+//        if (i == null){
+//            throw new RuntimeException("User does not exist");
+//        }
+//        else {
+//            j.setUser(i);
+//            j.setTitle(dto.getTitle());
+////            j.setPhotoModelList(null);
+//            return j;
+//        }
+//    }
 }

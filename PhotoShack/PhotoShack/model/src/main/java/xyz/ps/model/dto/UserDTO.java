@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
 
-@ApiModel(value = "User", description = "A DTO representing User object")
+@ApiModel(value = "UserDTO", description = "A DTO representing User object")
 @Setter
 @Getter
 @NoArgsConstructor

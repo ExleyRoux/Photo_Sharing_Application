@@ -3,7 +3,7 @@ package xyz.ps.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.ps.model.dto.NewAlbumDTO;
-import xyz.ps.service.exception.EmailNotFoundException;
+import xyz.ps.service.exception.UserNotFoundException;
 import xyz.ps.repository.AlbumRepository;
 import xyz.ps.repository.model.AlbumModel;
 import xyz.ps.repository.model.UserModel;
@@ -11,16 +11,13 @@ import xyz.ps.repository.model.UserModel;
 @Service
 public class CreateNewAlbumService {
     @Autowired
-    private AlbumRepository albums;
+    private AlbumRepository albumRepository;
     @Autowired
-    private GetUserService userService;
+    private GetUserService getUserService;
 
     public AlbumModel createNewAlbum(NewAlbumDTO album) {
         try {
-            UserModel user = userService.getUserModelByEmail(album.getUserEmail());
-            if(user == null){
-                throw new EmailNotFoundException();
-            }
+            UserModel user = getUserService.getUserById(album.getUserId());
 
             String title = album.getTitle();
             if(title == null || title == ""){
@@ -31,10 +28,13 @@ public class CreateNewAlbumService {
             i.setUser(user);
             i.setTitle(title);
 
-            return albums.save(i);
+            return albumRepository.save(i);
+        }
+        catch (UserNotFoundException e){
+            throw new UserNotFoundException();
         }
         catch (Exception e){
-            throw new RuntimeException("Unable to save to the DB", e);
+            throw new RuntimeException();
         }
     }
 }

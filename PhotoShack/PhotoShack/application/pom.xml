@@ -47,6 +47,13 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-bean-validators</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.microsoft.azure</groupId>
+            <artifactId>azure-storage</artifactId>
+            <version>8.4.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
