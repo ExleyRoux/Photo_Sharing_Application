@@ -44,7 +44,7 @@ public class DeletePhotoController {
 
         try {
             UserModel um = getUserService.getUserModelByEmail(email);
-            AlbumModel am = getAlbumService.getAlbumByUserIdAndAlbumName(um.getUserId(), email);
+            AlbumModel am = getAlbumService.getAlbumByUserIdAndAlbumName(um.getUserId(), album);
             PhotoModel pm = getPhotoService.getPhotoDModelByUserIdAndAlbumIdAndPhotoName(um.getUserId(), am.getAlbumID(), photo);
 
             if(!deletePhotoService.deletePhotoById(pm.getPhotoID())){
@@ -73,5 +73,4 @@ public class DeletePhotoController {
         }
         return new ResponseEntity<>(response, status);
     }
-
 }

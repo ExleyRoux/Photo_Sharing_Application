@@ -16,6 +16,7 @@ import xyz.ps.service.exception.UserNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("album")
 @ComponentScan("xyz.ps.service")
@@ -26,8 +27,8 @@ public class GetAlbumController {
     @Autowired
     GetPhotoService getPhotoService;
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping(name = "Get Album Contents", value = "/")
+    @CrossOrigin("*")
+    @GetMapping(name = "Get Album Contents", value = "/all")
     @ResponseStatus(code = HttpStatus.OK)
     public ResponseEntity<GeneralResponse> getAlbumContents(
             @RequestParam String email,

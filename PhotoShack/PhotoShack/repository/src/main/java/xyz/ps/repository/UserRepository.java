@@ -9,6 +9,8 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserModel, Integer> {
+    @Query("select u from UserModel u where u.email like ?1 and u.password like ?2")
+    Optional<UserModel> findByEmailLikeAndPasswordLike(String email, String password);
 
     @Query("select u from UserModel u where upper(u.email) like upper(?1)")
     Optional<UserModel> findByEmailLikeIgnoreCase(String email);

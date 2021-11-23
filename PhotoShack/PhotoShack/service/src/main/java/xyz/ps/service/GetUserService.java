@@ -3,6 +3,7 @@ package xyz.ps.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import sun.security.util.Password;
 import xyz.ps.model.dto.LoginUserDTO;
 import xyz.ps.model.dto.UserDTO;
 import xyz.ps.model.exception.ResourceNotFoundException;
@@ -53,6 +54,40 @@ public class GetUserService {
         }
     }
 
+    public boolean userExists(String email){
+        System.out.println("Does user exist:");
+        try {
+            Optional<UserModel> i = userRepository.findByEmailLikeIgnoreCase(email);
+            if(!i.isPresent()){;
+                return false;
+            }
+            else{
+                System.out.println("Found user");
+                return true;
+            }
+        }
+        catch (Exception e){
+            throw new RuntimeException("Problem Finding User");
+        }
+    }
+
+    public UserModel getUserModelByEmailAndPassword(String email, String password){
+        System.out.println("Getting user by email and password:");
+        try {
+            Optional<UserModel> i = userRepository.findByEmailLikeAndPasswordLike(email, password);
+            if(!i.isPresent()){
+                throw new UserNotFoundException("User does not exist");
+            }
+            else{
+                System.out.println("Found user");
+                return i.get();
+            }
+        }
+        catch (Exception e){
+            throw new UserNotFoundException("Problem Finding User");
+        }
+    }
+
 //    public UserDTO getUserByName(String name){
 //        try {
 //            UserModel j = userRepository.findByFirstNameLikeIgnoreCase(name);
@@ -85,18 +120,18 @@ public class GetUserService {
         }
     }
 
-//    public UserModel getUserByLogin(LoginUserDTO user){
-//        try {
-//            Optional<UserModel> j = Optional.ofNullable(userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword()));
-//
-//            if(!j.isPresent()){
-//                return new UserModel();
-//            }
-//            else
-//                return j.get();
-//        }
-//        catch (Exception e){
-//            throw new RuntimeException("Problem Finding User", e);
-//        }
-//    }
+    public UserModel getUserByLogin(LoginUserDTO user){
+        try {
+            Optional<UserModel> j = Optional.ofNullable(userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword()));
+
+            if(!j.isPresent()){
+                return new UserModel();
+            }
+            else
+                return j.get();
+        }
+        catch (Exception e){
+            throw new RuntimeException("Problem Finding User", e);
+        }
+    }
 }

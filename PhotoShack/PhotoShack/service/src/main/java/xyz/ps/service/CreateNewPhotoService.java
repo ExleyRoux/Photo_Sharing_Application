@@ -45,7 +45,7 @@ public class CreateNewPhotoService {
             catch (AlbumNotFoundException e){
                 NewAlbumDTO newAlbumCreate = new NewAlbumDTO();
                 newAlbumCreate.setTitle(newPhotoDTO.getAlbumName());
-                newAlbumCreate.setUserId(user.getUserId());
+//                newAlbumCreate.setUserEmail(user.getEmail());
                 albumModel = createNewAlbumService.createNewAlbum(newAlbumCreate);
             }
 

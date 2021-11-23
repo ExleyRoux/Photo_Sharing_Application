@@ -4,18 +4,10 @@ import com.microsoft.azure.storage.CloudStorageAccount;
 import com.microsoft.azure.storage.OperationContext;
 import com.microsoft.azure.storage.StorageException;
 import com.microsoft.azure.storage.blob.*;
-import com.microsoft.azure.storage.file.CloudFile;
-import com.microsoft.azure.storage.file.CloudFileShare;
-import com.microsoft.azure.storage.file.FileInputStream;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import xyz.ps.model.exception.ResourceNotFoundException;
-import xyz.ps.service.exception.PhotoNotFoundException;
 
-import javax.imageio.stream.ImageOutputStream;
-import javax.imageio.stream.MemoryCacheImageInputStream;
-import javax.imageio.stream.MemoryCacheImageOutputStream;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -144,8 +136,8 @@ public class PhysicalPhotoService {
 
     public void deletePhoto(String containerName, String photoName){
         try {
-            init();
             System.out.println("Getting Ready to delete " + containerName + " " + photoName);
+            init();
             CloudBlobContainer contain = getContainer(containerName);
             if(!contain.exists())
                 throw new ResourceNotFoundException();

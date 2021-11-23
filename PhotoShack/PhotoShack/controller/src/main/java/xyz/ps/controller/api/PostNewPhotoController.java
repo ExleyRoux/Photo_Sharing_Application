@@ -49,7 +49,7 @@ public class PostNewPhotoController {
         try {
             i.setPhoto(file);
             UserModel um = getUserService.getUserModelByEmail(email);
-            AlbumModel am = getAlbumService.getAlbumByUserIdAndAlbumName(um.getUserId(), email);
+            AlbumModel am = getAlbumService.getAlbumByUserIdAndAlbumName(um.getUserId(), album);
 
             PhotoDTO photoDTO = createNewPhotoService.createNewPhoto(i);
             return new ResponseEntity<>(new GeneralResponse(true, photoDTO), HttpStatus.CREATED);
